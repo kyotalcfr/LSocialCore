@@ -40,7 +40,7 @@
 ### Quick Setup
 
 1. **Download** the latest release from Polymart/Builtbybit
-2. **Upload** `LSocialCore-1.0.0-shaded.jar` to your plugins folder
+2. **Upload** `LSocialCore-1.0.0-dist.jar` to your plugins folder
 3. **Restart** your server
 4. **Configure** settings in `plugins/LSocialCore/config.yml`
 5. **Enjoy** professional social features!
