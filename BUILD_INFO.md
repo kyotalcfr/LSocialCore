@@ -11,7 +11,6 @@
 ## 🛒 Availability
 - **🟣 Polymart**: Premium marketplace with buyer protection
 - **🔴 BuiltByBit**: Minecraft development community
-- **📦 Includes**: Main plugin + Velocity addon + Documentation + API + Support
 
 ## ✅ Current Status
 - ✅ **Plugin Loading**: Working perfectly on Paper & Velocity
