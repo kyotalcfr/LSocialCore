@@ -1,0 +1,268 @@
+# ═══════════════════════════════════════════════════════════════
+#                    LSocialCore Velocity Configuration
+# ═══════════════════════════════════════════════════════════════
+# This is the COMPLETE config for Velocity proxy server
+# Auto-generated when plugin starts on Velocity
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                   PROXY SETTINGS                            │
+# └─────────────────────────────────────────────────────────────┘
+proxy:
+  name: "MainProxy"                    # Proxy identifier
+  motd: "&6LSocialCore &7Network"      # Network MOTD
+  max-players: 500                     # Maximum concurrent players
+  
+# ┌─────────────────────────────────────────────────────────────┐
+# │                CROSS-SERVER MANAGEMENT                      │
+# └─────────────────────────────────────────────────────────────┘
+cross-server:
+  enabled: true
+  
+  # Key Management
+  authentication:
+    auto-generate-key: true            # Generate key on startup
+    key-length: 256                    # Key length in bits
+    key-rotation: 7776000              # Auto-rotate every 90 days (seconds)
+    backup-keys: 3                     # Keep backup keys
+    
+  # Network Communication
+  network:
+    port: 25580                        # Cross-server communication port
+    bind-address: "0.0.0.0"           # Bind to all interfaces
+    timeout: 30000                     # Connection timeout (ms)
+    max-connections: 100               # Max concurrent connections
+    
+  # Server Registry
+  servers:
+    survival:
+      host: "survival.internal"
+      port: 25570
+      priority: 1
+      groups: ["main", "survival"]
+      
+    creative:
+      host: "creative.internal" 
+      port: 25571
+      priority: 2
+      groups: ["main", "creative"]
+      
+    minigames:
+      host: "minigames.internal"
+      port: 25572
+      priority: 3
+      groups: ["games", "minigames"]
+      
+    hub:
+      host: "hub.internal"
+      port: 25573
+      priority: 0
+      groups: ["main", "hub"]
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                   DATABASE SETTINGS                         │
+# └─────────────────────────────────────────────────────────────┘
+database:
+  type: "mysql"                        # mysql or mariadb for network
+  host: "database.internal"
+  port: 3306
+  database: "lsocial_network"
+  username: "lsocial_user"
+  password: "secure_network_password"
+  
+  # Connection Pool (HikariCP)
+  pool:
+    maximum-pool-size: 20              # Max connections
+    minimum-idle: 5                    # Min idle connections
+    connection-timeout: 30000          # Connection timeout (ms)
+    idle-timeout: 600000               # Idle timeout (ms)
+    max-lifetime: 1800000              # Max connection lifetime (ms)
+    leak-detection-threshold: 60000    # Detect connection leaks
+    
+  # Performance Settings
+  performance:
+    cache-prepared-statements: true
+    prepared-statement-cache-size: 250
+    prepared-statement-cache-sql-limit: 2048
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                   FRIENDS SYSTEM                            │
+# └─────────────────────────────────────────────────────────────┘
+friends:
+  enabled: true
+  
+  # Network Features
+  cross-server:
+    enabled: true
+    sync-interval: 30                  # Sync data every 30 seconds
+    notification-broadcast: true       # Broadcast friend status changes
+    
+  # Limits & Rules
+  limits:
+    max-friends: 100                   # Higher limit for networks
+    max-pending-requests: 20
+    request-timeout: 86400             # 24 hours in seconds
+    
+  # Notifications
+  notifications:
+    join-messages: true                # "Friend X joined the network"
+    leave-messages: true               # "Friend X left the network" 
+    server-switch: true                # "Friend X switched to Survival"
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    PARTY SYSTEM                             │
+# └─────────────────────────────────────────────────────────────┘
+party:
+  enabled: true
+  
+  # Network Features
+  cross-server:
+    enabled: true
+    auto-follow: true                  # Party members follow leader
+    sync-chat: true                    # Party chat across servers
+    
+  # Limits & Rules  
+  limits:
+    max-party-size: 12                 # Higher limit for networks
+    max-invites: 10
+    invite-timeout: 300                # 5 minutes in seconds
+    
+  # Party Features
+  features:
+    party-chat: true                   # Dedicated party chat
+    party-teleport: true               # /party tp command
+    leader-controls: true              # Leader can control party
+    cross-server-warp: true            # Warp party to different servers
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                   GUI SETTINGS                              │
+# └─────────────────────────────────────────────────────────────┘
+gui:
+  # Note: GUIs only work on Paper servers, not Velocity
+  # This section is for sync purposes only
+  sync-preferences: true               # Sync GUI preferences across servers
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                   SECURITY SETTINGS                         │
+# └─────────────────────────────────────────────────────────────┘
+security:
+  authentication:
+    require-key: true                  # Require valid key for connections
+    constant-time-comparison: true     # Prevent timing attacks
+    max-auth-attempts: 3               # Max failed auth attempts
+    blacklist-duration: 3600           # Blacklist duration (seconds)
+    
+  # Rate Limiting
+  rate-limiting:
+    enabled: true
+    max-requests-per-minute: 60        # Per IP rate limit
+    burst-limit: 10                    # Burst allowance
+    
+  # Packet Validation
+  packet-validation:
+    enabled: true
+    max-packet-size: 8192              # Max packet size in bytes
+    validate-json: true                # Validate JSON packets
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                  LOGGING & DEBUG                            │
+# └─────────────────────────────────────────────────────────────┘
+logging:
+  level: "INFO"                        # DEBUG, INFO, WARN, ERROR
+  
+  # Log Categories
+  categories:
+    cross-server-events: true          # Log cross-server events
+    authentication: true               # Log auth attempts
+    database-queries: false            # Log SQL queries (performance impact)
+    packet-traffic: false              # Log packet details (verbose)
+    
+  # Log Files
+  files:
+    enabled: true
+    max-size: "10MB"                   # Max log file size
+    max-files: 5                       # Keep 5 log files
+    format: "[%time%] [%level%] %message%"
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                 PERFORMANCE TUNING                          │
+# └─────────────────────────────────────────────────────────────┘
+performance:
+  # Caching
+  cache:
+    enabled: true
+    player-cache-size: 1000            # Cache 1000 players
+    friend-cache-ttl: 300              # Cache friends for 5 minutes
+    party-cache-ttl: 600               # Cache parties for 10 minutes
+    
+  # Async Processing
+  async:
+    core-pool-size: 4                  # Core thread pool size
+    max-pool-size: 16                  # Max thread pool size
+    queue-capacity: 1000               # Task queue capacity
+    
+  # Compression
+  compression:
+    enabled: true
+    algorithm: "gzip"                  # gzip or deflate
+    level: 6                           # Compression level (1-9)
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                    MESSAGES                                 │
+# └─────────────────────────────────────────────────────────────┘
+messages:
+  # Network Messages
+  network:
+    player-join: "&a{player} &7joined the network"
+    player-leave: "&c{player} &7left the network"
+    server-switch: "&e{player} &7switched to &6{server}"
+    
+  # Command Messages
+  commands:
+    proxy-only: "&cThis command can only be used on the proxy!"
+    no-permission: "&cYou don't have permission to use this command!"
+    
+  # Error Messages
+  errors:
+    database-error: "&cDatabase error occurred! Please try again later."
+    network-error: "&cNetwork communication error!"
+    auth-failed: "&cAuthentication failed!"
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │                 INTEGRATION SETTINGS                        │
+# └─────────────────────────────────────────────────────────────┘
+integrations:
+  # LuckPerms Integration
+  luckperms:
+    enabled: true
+    sync-permissions: true             # Sync permissions across servers
+    
+  # Discord Integration (if Discord bot available)
+  discord:
+    enabled: false
+    webhook-url: ""
+    log-level: "INFO"
+    
+  # Metrics
+  metrics:
+    enabled: true                      # bStats metrics
+    custom-charts: true                # Custom plugin metrics
+
+# ┌─────────────────────────────────────────────────────────────┐
+# │               AUTO-GENERATION SETTINGS                      │
+# └─────────────────────────────────────────────────────────────┘
+auto-generation:
+  # Automatically create example configs for subservers
+  create-examples: true
+  example-path: "subserver-configs/"
+  
+  # Key distribution
+  distribute-keys: true
+  key-distribution-method: "file"      # file or api
+  
+  # Documentation
+  generate-docs: true
+  docs-format: "markdown"              # markdown or html
+
+# ═══════════════════════════════════════════════════════════════
+#                         END OF CONFIG
+# ═══════════════════════════════════════════════════════════════ 
