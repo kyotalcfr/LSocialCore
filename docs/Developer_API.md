@@ -1253,7 +1253,3 @@ If you see LSocialCore classes in your JAR, you have **WRONG** build configurati
 3. Place YourPlugin.jar in your plugins/ folder
 4. Restart your server
 ```
-
----
-
-## 📋 Quick Start Summary
