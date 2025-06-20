@@ -1,5 +1,22 @@
 # 📚 LSocialCore Complete Tutorial
 
+> Step-by-step guide to setting up and using LSocialCore on your Minecraft network
+
+## 📖 Table of Contents
+
+1. [Prerequisites](#prerequisites)
+2. [Single Server Setup](#single-server-setup)
+3. [Multi-Server Network Setup](#multi-server-network-setup)
+4. [Database Configuration](#database-configuration)
+5. [Plugin Configuration](#plugin-configuration)
+6. [Testing & Verification](#testing--verification)
+7. [Player Usage Guide](#player-usage-guide)
+8. [Admin Management](#admin-management)
+9. [Troubleshooting](#troubleshooting)
+10. [Advanced Configuration](#advanced-configuration)
+
+---
+
 ## 🔧 Prerequisites
 
 ### Server Requirements
@@ -14,6 +31,25 @@
 - **Database**: MySQL 8.0+ or PostgreSQL 12+
 - **Network**: All servers must reach the database
 - **Ports**: Default cross-server port 25580 (configurable)
+
+### Purchase & Download LSocialCore
+
+#### Where to Buy
+- **🟣 Polymart**: Premium Minecraft resource marketplace with buyer protection
+- **🔴 BuiltByBit**: Minecraft development community with verified sellers
+
+#### What's Included
+- `LSocialCore-1.0.0-dist.jar` - Main plugin for Paper servers
+- `LSocialCore-Velocity.jar` - Velocity proxy plugin (included in purchase)
+- Complete documentation and setup guides
+- Developer API access
+- Support and updates
+
+### Download LSocialCore
+1. Visit Polymart or BuiltByBit marketplace
+2. Purchase and download `LSocialCore-1.0.0-dist.jar`
+3. For Velocity: Download `LSocialCore-Velocity.jar` (included in purchase)
+
 ---
 
 ## 🏠 Single Server Setup
@@ -138,9 +174,9 @@ cross-server:
 #### Install on All Paper Servers
 ```bash
 # Install on each Paper server
-cp LSocialCore-1.0.0-shaded.jar /server1/plugins/
-cp LSocialCore-1.0.0-shaded.jar /server2/plugins/
-cp LSocialCore-1.0.0-shaded.jar /server3/plugins/
+cp LSocialCore-1.0.0-dist.jar /server1/plugins/
+cp LSocialCore-1.0.0-dist.jar /server2/plugins/
+cp LSocialCore-1.0.0-dist.jar /server3/plugins/
 ```
 
 #### Configure Each Server

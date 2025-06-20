@@ -8,6 +8,11 @@
 - **Java**: 17+
 - **Minecraft**: 1.21+
 
+## 🛒 Availability
+- **🟣 Polymart**: Premium marketplace with buyer protection
+- **🔴 BuiltByBit**: Minecraft development community
+- **📦 Includes**: Main plugin + Velocity addon + Documentation + API + Support
+
 ## ✅ Current Status
 - ✅ **Plugin Loading**: Working perfectly on Paper & Velocity
 - ✅ **Database System**: MySQL & SQLite fully supported
@@ -26,6 +31,7 @@
 5. **Command Cooldowns** - Added 3-second cooldown to prevent friend request spam
 6. **Database Resource Leaks** - Fixed all resource leak issues with proper try-with-resources
 
+
 ## 🗄️ Database Schema
 Tables created automatically on first run:
 - `lsocial_friends` - Friendship relationships
@@ -35,4 +41,16 @@ Tables created automatically on first run:
 - `lsocial_party_invites` - Party invitations with timeout
 - `lsocial_player_sessions` - Cross-server player sessions
 
-**Installation**: Simply drop `LSocialCore-1.0.0-DIST.jar` into your plugins folder and restart your server! 
+*For detailed features, configuration, and technical details, see the complete documentation files above.*
+
+## 🎉 Ready for Release!
+
+LSocialCore v1.0.0 is **production-ready** with:
+- Enterprise-grade reliability
+- Professional API for developers
+- Comprehensive documentation
+- Cross-server network support
+- Advanced social features
+- Performance optimization
+
+**Installation**: Simply drop `LSocialCore-1.0.0-dist.jar` into your plugins folder and restart your server! 

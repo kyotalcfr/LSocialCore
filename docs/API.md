@@ -143,7 +143,7 @@ dependencies {
 ### Option 2: Manual JAR Setup (No Git/Gradle Required)
 
 #### Step 1: Download JAR
-1. Download `LSocialCore-1.0.0-dist.jar` from releases
+1. Purchase and download `LSocialCore-1.0.0-dist.jar` from Polymart or BuiltByBit
 2. Create `libs/` folder in your project
 3. Place JAR in `libs/LSocialCore-1.0.0-dist.jar`
 
