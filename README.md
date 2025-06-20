@@ -15,7 +15,7 @@
 - **Confirmation System** - Prevent accidental friend removal
 - **Cooldown Protection** - Anti-spam friend request system
 
-### 🎉 Professional Party System
+### 🎉 Party System
 - **Private Parties** with password protection and custom names
 - **Cross-Server Party Management** - Invite players from any server
 - **Party Teleportation** with confirmation dialogs
