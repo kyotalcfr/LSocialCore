@@ -6,11 +6,10 @@
 [![Velocity](https://img.shields.io/badge/Velocity-3.3+-blue.svg)](https://velocitypowered.com/)
 
 **📦 Available on:**
-- 🟣 **[Polymart](https://polymart.org)** - Premium Minecraft Resource Marketplace
-- 🔴 **[BuiltByBit](https://builtbybit.com)** - Minecraft Development Community
+- 🟣 **[Polymart](https://polymart.org)**
+- 🔴 **[BuiltByBit](https://builtbybit.com)**
 
-**💻 Source Code:**
-- 📂 **[GitHub Repository](https://github.com/kyotalcfr/LSocialCore)** - Documentation, Source Code & Issues
+- 📂 **[GitHub](https://github.com/kyotalcfr/LSocialCore)** - Documentation & Issues
 
 > Professional-grade social plugin for Minecraft networks with advanced cross-server functionality and enterprise-level reliability.
 
