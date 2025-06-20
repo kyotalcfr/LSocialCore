@@ -954,7 +954,3 @@ metrics:
 ---
 
 **🎉 Congratulations! You've completed the LSocialCore tutorial.**
-
-Your Minecraft network now has professional-grade social features with enterprise-level reliability. Players can connect across servers, form lasting friendships, and create memorable party experiences.
-
-**Need help?** Check the [Troubleshooting](#troubleshooting) section or create an issue on GitHub. 
