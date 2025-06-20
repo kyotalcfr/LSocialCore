@@ -72,7 +72,7 @@ public class YourPlugin extends JavaPlugin {
 
 #### Manual JAR Integration Example
 ```java
-// If you're using manual JAR setup, ensure proper error handling
+// Ensure proper error handling
 public class ManualIntegrationExample extends JavaPlugin {
     
     @Override
@@ -102,45 +102,8 @@ public class ManualIntegrationExample extends JavaPlugin {
 }
 ```
 
----
-
 ## 📦 Setup Methods
-
-### Option 1: Maven/Gradle (Recommended)
-
-#### Maven Dependency
-```xml
-<repositories>
-    <repository>
-        <id>github</id>
-        <url>https://maven.pkg.github.com/lythnorb/LSocialCore</url>
-    </repository>
-</repositories>
-
-<dependencies>
-    <dependency>
-        <groupId>com.lythnorb</groupId>
-        <artifactId>LSocialCore</artifactId>
-        <version>1.0.0</version>
-        <scope>provided</scope>
-    </dependency>
-</dependencies>
-```
-
-#### Gradle Dependency
-```gradle
-repositories {
-    maven {
-        url = "https://maven.pkg.github.com/lythnorb/LSocialCore"
-    }
-}
-
-dependencies {
-    compileOnly 'com.lythnorb:LSocialCore:1.0.0'
-}
-```
-
-### Option 2: Manual JAR Setup (No Git/Gradle Required)
+Manual JAR Setup (No Git/Gradle Required)
 
 #### Step 1: Download JAR
 1. Purchase and download `LSocialCore-1.0.0-dist.jar` from Polymart or BuiltByBit
