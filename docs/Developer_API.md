@@ -87,8 +87,8 @@ public class YourPlugin extends JavaPlugin {
 
 ### Step 1: Purchase & Download (Development Only)
 1. **Purchase** `LSocialCore-1.0.0-dist.jar` from:
-   - 🟣 **Polymart** - Premium Minecraft Resource Marketplace
-   - 🔴 **BuiltByBit** - Minecraft Development Community
+   - 🟣 **Polymart**
+   - 🔴 **BuiltByBit** 
 2. **Create** `libs/` folder in your project root (**DEVELOPMENT ONLY**)
 3. **Place** JAR file as `libs/LSocialCore-1.0.0-dist.jar` (**FOR CODING ONLY**)
 
