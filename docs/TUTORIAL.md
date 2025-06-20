@@ -1,22 +1,4 @@
 # 📚 LSocialCore Complete Tutorial
-
-> Step-by-step guide to setting up and using LSocialCore on your Minecraft network
-
-## 📖 Table of Contents
-
-1. [Prerequisites](#prerequisites)
-2. [Single Server Setup](#single-server-setup)
-3. [Multi-Server Network Setup](#multi-server-network-setup)
-4. [Database Configuration](#database-configuration)
-5. [Plugin Configuration](#plugin-configuration)
-6. [Testing & Verification](#testing--verification)
-7. [Player Usage Guide](#player-usage-guide)
-8. [Admin Management](#admin-management)
-9. [Troubleshooting](#troubleshooting)
-10. [Advanced Configuration](#advanced-configuration)
-
----
-
 ## 🔧 Prerequisites
 
 ### Server Requirements
