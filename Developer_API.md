@@ -35,42 +35,6 @@ public class YourPlugin extends JavaPlugin {
 }
 ```
 
----
-
-## 📦 Maven/Gradle Setup
-
-### Maven Dependency
-```xml
-<repositories>
-    <repository>
-        <id>github</id>
-        <url>https://maven.pkg.github.com/lythnorb/LSocialCore</url>
-    </repository>
-</repositories>
-
-<dependencies>
-    <dependency>
-        <groupId>com.lythnorb</groupId>
-        <artifactId>LSocialCore</artifactId>
-        <version>1.0.0</version>
-        <scope>provided</scope>
-    </dependency>
-</dependencies>
-```
-
-### Gradle Dependency
-```gradle
-repositories {
-    maven {
-        url = "https://maven.pkg.github.com/lythnorb/LSocialCore"
-    }
-}
-
-dependencies {
-    compileOnly 'com.lythnorb:LSocialCore:1.0.0'
-}
-```
-
 ### Plugin Dependencies
 ```yaml
 # plugin.yml
