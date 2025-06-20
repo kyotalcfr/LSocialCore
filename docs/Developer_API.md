@@ -9,9 +9,8 @@
 - **Server**: Paper 1.21+ or Velocity 3.3+
 - **LSocialCore**: v1.0.0+
 
-### Basic Integration
+### Code Integration Example
 
-#### Standard Integration (All Setup Methods)
 ```java
 public class YourPlugin extends JavaPlugin {
     private LSocialCore lsocialCore;
@@ -37,8 +36,20 @@ public class YourPlugin extends JavaPlugin {
     }
     
     private boolean setupLSocialCore() {
+        // Check if LSocialCore JAR is in classpath (development)
+        try {
+            Class.forName("com.lythnorb.lsocialcore.LSocialCore");
+        } catch (ClassNotFoundException e) {
+            getLogger().severe("LSocialCore JAR not found in classpath!");
+            getLogger().severe("Please add LSocialCore-1.0.0-dist.jar to your IDE libraries!");
+            return false;
+        }
+        
+        // Check if plugin is installed and enabled (runtime)
         Plugin plugin = getServer().getPluginManager().getPlugin("LSocialCore");
         if (!(plugin instanceof LSocialCore)) {
+            getLogger().severe("LSocialCore plugin not installed on server!");
+            getLogger().severe("Please install LSocialCore-1.0.0-dist.jar to plugins/ folder!");
             return false;
         }
         
@@ -70,80 +81,38 @@ public class YourPlugin extends JavaPlugin {
 }
 ```
 
-#### Manual JAR Integration Example
-```java
-// Ensure proper error handling
-public class ManualIntegrationExample extends JavaPlugin {
-    
-    @Override
-    public void onEnable() {
-        // Check if LSocialCore JAR is in classpath
-        try {
-            Class.forName("com.lythnorb.lsocialcore.LSocialCore");
-            getLogger().info("LSocialCore classes found in classpath!");
-        } catch (ClassNotFoundException e) {
-            getLogger().severe("LSocialCore JAR not found in classpath!");
-            getLogger().severe("Please add LSocialCore-1.0.0-dist.jar to your IDE libraries!");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
-        
-        // Check if plugin is installed on server
-        if (!getServer().getPluginManager().isPluginEnabled("LSocialCore")) {
-            getLogger().severe("LSocialCore plugin is not installed on this server!");
-            getLogger().severe("Please install LSocialCore-1.0.0-dist.jar to your server plugins folder!");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
-        
-        // Standard integration continues...
-        setupLSocialCore();
-    }
-}
-```
+---
 
-## 📦 Setup Methods
-Manual JAR Setup (No Git/Gradle Required)
+## 📦 Project Setup: Manual JAR Integration
 
-#### Step 1: Download JAR
-1. Purchase and download `LSocialCore-1.0.0-dist.jar` from Polymart or BuiltByBit
-2. Create `libs/` folder in your project
-3. Place JAR in `libs/LSocialCore-1.0.0-dist.jar`
+### Step 1: Purchase & Download (Development Only)
+1. **Purchase** `LSocialCore-1.0.0-dist.jar` from:
+   - 🟣 **Polymart** - Premium Minecraft Resource Marketplace
+   - 🔴 **BuiltByBit** - Minecraft Development Community
+2. **Create** `libs/` folder in your project root (**DEVELOPMENT ONLY**)
+3. **Place** JAR file as `libs/LSocialCore-1.0.0-dist.jar` (**FOR CODING ONLY**)
 
-#### Step 2: Add to IDE Classpath
-```java
-// IntelliJ IDEA:
-// File → Project Structure → Libraries → + → Java → select LSocialCore JAR
+> ⚠️ **IMPORTANT**: The `libs/` folder is **ONLY for development**. The JAR will **NOT** be included in your final plugin when using `compileOnly`.
 
-// Eclipse:
-// Project Properties → Java Build Path → Libraries → Add External JARs
+### Step 2: IDE Configuration
 
-// VS Code:
-// Add to .vscode/settings.json or .classpath file
-```
+#### IntelliJ IDEA
+1. **File** → **Project Structure** → **Libraries**
+2. **Click** `+` → **Java** → **Select** `libs/LSocialCore-1.0.0-dist.jar`
+3. **Apply** and **OK**
 
-#### Step 3: Maven Local Install (If using Maven)
-```bash
-# Install JAR to local Maven repository
-mvn install:install-file \
-  -Dfile=libs/LSocialCore-1.0.0-dist.jar \
-  -DgroupId=com.lythnorb \
-  -DartifactId=LSocialCore \
-  -Dversion=1.0.0 \
-  -Dpackaging=jar
+#### Eclipse
+1. **Right-click** project → **Properties**
+2. **Java Build Path** → **Libraries** → **Add External JARs**
+3. **Select** `libs/LSocialCore-1.0.0-dist.jar`
 
-# Then use in pom.xml:
-```
-```xml
-<dependency>
-    <groupId>com.lythnorb</groupId>
-    <artifactId>LSocialCore</artifactId>
-    <version>1.0.0</version>
-    <scope>provided</scope>
-</dependency>
-```
+#### VS Code
+1. **Add** to `.classpath` file or workspace settings
+2. **Configure** Java extension to include the JAR
 
-#### Step 4: Maven System Dependency (Alternative)
+### Step 3: Build Configuration
+
+#### Maven (pom.xml)
 ```xml
 <dependency>
     <groupId>com.lythnorb</groupId>
@@ -154,12 +123,60 @@ mvn install:install-file \
 </dependency>
 ```
 
-### Plugin Dependencies (All Methods)
+#### Gradle (build.gradle)
+```gradle
+dependencies {
+    compileOnly files('libs/LSocialCore-1.0.0-dist.jar')
+}
+```
+
+#### Gradle Kotlin DSL (build.gradle.kts)
+```kotlin
+dependencies {
+    compileOnly(files("libs/LSocialCore-1.0.0-dist.jar"))
+}
+```
+
+### Step 4: Plugin Dependencies
 ```yaml
-# plugin.yml
+# plugin.yml - Required dependency
 depend: [LSocialCore]
-# or
+# or soft dependency for optional integration
 softdepend: [LSocialCore]
+```
+
+### Step 5: Validation (Recommended)
+```java
+// Add this validation method to your main plugin class
+public boolean validateLSocialCore() {
+    // 1. Check if JAR is in classpath (development)
+    try {
+        Class.forName("com.lythnorb.lsocialcore.LSocialCore");
+        getLogger().info("✓ LSocialCore JAR found in classpath");
+    } catch (ClassNotFoundException e) {
+        getLogger().severe("✗ LSocialCore JAR missing from classpath!");
+        getLogger().severe("  → Add LSocialCore-1.0.0-dist.jar to your project libraries");
+        return false;
+    }
+    
+    // 2. Check if plugin is loaded (runtime)
+    if (!getServer().getPluginManager().isPluginEnabled("LSocialCore")) {
+        getLogger().severe("✗ LSocialCore plugin not installed on server!");
+        getLogger().severe("  → Install LSocialCore-1.0.0-dist.jar to plugins/ folder");
+        return false;
+    }
+    
+    // 3. Check version compatibility
+    Plugin plugin = getServer().getPluginManager().getPlugin("LSocialCore");
+    String version = plugin.getDescription().getVersion();
+    if (!version.startsWith("1.0")) {
+        getLogger().warning("⚠ LSocialCore version " + version + " may not be compatible");
+        getLogger().warning("  → Recommended: v1.0.0+");
+    }
+    
+    getLogger().info("✓ LSocialCore integration validated successfully");
+    return true;
+}
 ```
 
 ### Project Structure Example
@@ -167,12 +184,17 @@ softdepend: [LSocialCore]
 YourPlugin/
 ├── src/main/java/
 │   └── com/yourname/yourplugin/
-│       └── YourPlugin.java
-├── libs/                              # Manual JAR method
-│   └── LSocialCore-1.0.0-dist.jar   # Place JAR here
-├── pom.xml                           # Maven configuration
-└── plugin.yml                       # Plugin dependencies
+│       ├── YourPlugin.java
+│       └── integration/
+│           └── LSocialIntegration.java
+├── libs/                              # DEVELOPMENT ONLY - NOT distributed
+│   └── LSocialCore-1.0.0-dist.jar   # FOR CODING ONLY - NOT in final JAR
+├── build.gradle or pom.xml           # Build configuration
+└── src/main/resources/
+    └── plugin.yml                    # Plugin dependencies
 ```
+
+> 📝 **Note**: When you build your plugin, the `libs/` folder and its contents are **NOT included** in the final JAR file when using `compileOnly` configuration.
 
 ---
 
@@ -1141,4 +1163,97 @@ All database operations return `CompletableFuture<T>` for async handling:
 
 ---
 
-**Ready to integrate LSocialCore with your plugin?** Start with the [Getting Started](#getting-started) section and explore the examples relevant to your use case! 
+## ⚠️ IMPORTANT: Distribution Guidelines
+
+### ❌ DO NOT Include LSocialCore in Your Plugin JAR
+
+**NEVER** include LSocialCore JAR inside your plugin's shaded/fat JAR. This will cause:
+
+#### Technical Issues:
+- 🚨 **Plugin Conflicts** - Server will have duplicate LSocialCore classes
+- 🚨 **ClassLoader Errors** - JVM cannot load same classes twice
+- 🚨 **Server Crashes** - Bukkit/Paper will fail to start
+- 🚨 **Unpredictable Behavior** - Methods may call wrong class instances
+
+#### Legal Issues:
+- 🚨 **License Violation** - Redistributing premium plugin without permission
+- 🚨 **Copyright Infringement** - LSocialCore is copyrighted by LythNorb
+- 🚨 **Marketplace Violation** - Against Polymart/BuiltByBit terms of service
+- 🚨 **Account Suspension** - Your marketplace accounts may be banned
+
+### ✅ Correct Integration Method:
+
+```gradle
+// ✅ CORRECT - Compile-only dependency
+dependencies {
+    compileOnly files('libs/LSocialCore-1.0.0-dist.jar')
+    compileOnly 'io.papermc.paper:paper-api:1.21.3-R0.1-SNAPSHOT'
+}
+
+// ❌ WRONG - Never do this!
+dependencies {
+    implementation files('libs/LSocialCore-1.0.0-dist.jar') // DON'T!
+    shadow files('libs/LSocialCore-1.0.0-dist.jar')         // DON'T!
+}
+```
+
+```xml
+<!-- ✅ CORRECT - System dependency with provided scope -->
+<dependency>
+    <groupId>com.lythnorb</groupId>
+    <artifactId>LSocialCore</artifactId>
+    <version>1.0.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/libs/LSocialCore-1.0.0-dist.jar</systemPath>
+</dependency>
+
+<!-- ❌ WRONG - Never use compile/runtime scope! -->
+<dependency>
+    <groupId>com.lythnorb</groupId>
+    <artifactId>LSocialCore</artifactId>
+    <version>1.0.0</version>
+    <scope>compile</scope> <!-- DON'T! -->
+</dependency>
+```
+
+### ✅ What Your Users Need:
+
+**IMPORTANT**: Your plugin JAR will **NOT** contain LSocialCore. Users must install both plugins separately:
+
+1. **Purchase** LSocialCore separately from Polymart/BuiltByBit
+2. **Install** LSocialCore-1.0.0-dist.jar to server's plugins/ folder
+3. **Install** your plugin JAR to server's plugins/ folder  
+4. **Restart** server
+
+### 🔍 How to Verify Your Build is Correct:
+
+After building your plugin, verify that LSocialCore is **NOT** included:
+
+```bash
+# Extract and check your plugin JAR contents
+jar -tf YourPlugin.jar | grep -i lsocial
+# Should return NOTHING - no LSocialCore classes
+
+# Or check JAR size - should be small without LSocialCore
+ls -lh YourPlugin.jar
+```
+
+If you see LSocialCore classes in your JAR, you have **WRONG** build configuration!
+
+### ✅ Document This in Your Plugin README:
+
+```markdown
+## Requirements
+- LSocialCore v1.0.0+ (Purchase from Polymart/BuiltByBit)
+- Paper 1.21+ server
+
+## Installation
+1. Purchase and download LSocialCore from Polymart or BuiltByBit
+2. Place LSocialCore-1.0.0-dist.jar in your plugins/ folder
+3. Place YourPlugin.jar in your plugins/ folder
+4. Restart your server
+```
+
+---
+
+## 📋 Quick Start Summary
