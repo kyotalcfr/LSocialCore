@@ -12,7 +12,7 @@
 - **Proxy**: Velocity 3.3+ (recommended) or BungeeCord
 - **Database**: MySQL 8.0+ or PostgreSQL 12+
 - **Network**: All servers must reach the database
-- **Ports**: Default cross-server port 25580 (configurable)
+- **Ports**: Default cross-server port 25565 (configurable)
 
 ### Purchase & Download LSocialCore
 
