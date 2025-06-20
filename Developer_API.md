@@ -2,20 +2,6 @@
 
 > Complete API documentation for integrating LSocialCore with your plugins
 
-## 📋 Table of Contents
-1. [Getting Started](#getting-started)
-2. [Maven/Gradle Setup](#mavengradle-setup)
-3. [Core API Classes](#core-api-classes)
-4. [Friends API](#friends-api)
-5. [Party API](#party-api)
-6. [Network API](#network-api)
-7. [Events API](#events-api)
-8. [Integration Examples](#integration-examples)
-9. [Best Practices](#best-practices)
-10. [Advanced Usage](#advanced-usage)
-
----
-
 ## 🚀 Getting Started
 ### Prerequisites
 - **Java**: 17 or higher
